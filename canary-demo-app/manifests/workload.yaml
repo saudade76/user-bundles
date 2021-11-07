@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: fleet-simple-app
-        image: gmehta3/fleet-simple-app:v2
+        image: gmehta3/fleet-simple-app:v1
         ports:
         - name: web
           containerPort: 8080
@@ -40,18 +40,19 @@ spec:
       targetPort: 8080
       name: web
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
     name: fleet-simple-app
     namespace: canary-demo
 spec:
     rules:
-    - host:
-      http:
+    - http:
         paths:
         - path: /
-          pathType: ImplementationSpecific
+          pathType: Prefix
           backend:
-            serviceName: fleet-simple-app
-            servicePort: 8080
+            service: 
+              name: fleet-simple-app
+              port: 
+                number: 8080
