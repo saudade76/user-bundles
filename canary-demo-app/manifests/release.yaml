@@ -11,7 +11,7 @@ spec:
   service:
     port: 8080
   analysis:
-    interval: 20s
+    interval: 60s
     threshold: 10
     maxWeight: 50
     stepWeight: 10
