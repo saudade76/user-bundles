@@ -10,6 +10,21 @@ spec:
     name: fleet-simple-app
   service:
     port: 8080
+    gateways:
+    - mesh.istio-system.svc.cluster.local        # 생성한 gateway dns
+    # Istio virtual service host names (optional)
+    hosts:
+    - app.example.com                                      # URL
+    # Istio traffic policy (optional)
+    trafficPolicy:
+      tls:
+        # use ISTIO_MUTUAL when mTLS is enabled
+        mode: DISABLE
+    # Istio retry policy (optional)
+    retries:
+      attempts: 3
+      perTryTimeout: 1s
+      retryOn: "gateway-error,connect-failure,refused-stream"
   analysis:
     interval: 60s
     threshold: 10
