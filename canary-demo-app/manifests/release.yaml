@@ -15,6 +15,7 @@ spec:
     # Istio virtual service host names (optional)
     hosts:
     - app.example.com                            # URL
+    - 15.164.211.209                             # URL
     # Istio traffic policy (optional)
     trafficPolicy:
       tls:
